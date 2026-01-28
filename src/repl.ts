@@ -1,9 +1,10 @@
-import { createInterface } from "readline";
 import { commandExit } from "./command_exit.js";
 import { commandHelp } from "./command_help.js";
-import type { CLICommand } from "./state.js"
+import type { CLICommand, State } from "./state.js"
+
 
 export function cleanInput(input: string): string[] {
+    //process the REPL input, returning an array of cleaned words
     return input
     .toLowerCase()
     .trim()
@@ -12,44 +13,24 @@ export function cleanInput(input: string): string[] {
 }
 
 
-const REPL = createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    prompt: "Pokedex> ",
-});
-export function startREPL() {
-    const command_list = getCommands();
-    REPL.prompt();
-    REPL.on('line', (input: string) => {
+export function startREPL(userState: State) {
+    //const command_list = getCommands();
+    userState.readline.prompt();
+    userState.readline.on('line', (input: string) => {
         const cleanedInput = cleanInput(input);
         if (cleanedInput.length === 0) {
-            REPL.prompt();
+            userState.readline.prompt();
             return;
         } else {
-            if (cleanedInput[0] in command_list) {
-                const command = command_list[cleanedInput[0]];
-                command.callback(command_list);
+            if (cleanedInput[0] in userState.commands) {
+                const command = userState.commands[cleanedInput[0]];
+                command.callback(userState);
             } else {
                 console.log(`Unknown command`);
             }
-            
-            REPL.prompt();
+            userState.readline.prompt();
         }
     }
 );};
 
 
-export function getCommands(): Record<string, CLICommand> {
-    return {
-        exit: {
-            name: "exit",
-            description: "Exits the pokedex",
-            callback: commandExit,
-        },
-        help: {
-            name: "help",
-            description: "Lists all available commands",
-            callback: commandHelp,
-        },
-    };
-}
