@@ -1,22 +1,28 @@
 export class PokeAPI {
-    private static readonly BASE_URL = 'https://pokeapi.co/api/v2/';
+    private static readonly BASE_URL = 'https://pokeapi.co/api/v2';
 
     constructor() {}
     //called each time PokeAPI is instantiated
 
     async fetchLocations(pageURL?: string): Promise<ShallowLocations> {
-        const url = pageURL ?? `{BASE_URL}/location-area`
+        const url = pageURL ?? `${PokeAPI.BASE_URL}/location-area`
         
         const response = await fetch(url);
-        const data = await response.json
-        //reesponse is the direct data from pokeAPI, data is after converting the data into a JSON and is in a more usable format
+        const data = await response.json();
+        //response is the direct data from pokeAPI, data is after converting the data into a JSON and is in a more usable format
 
+        return data as ShallowLocations;
+        // data is already formatted as ShallowLocations, so we can just return it
         
     }
 
     async fetchLocation(locationName: string): Promise<Location> {
-        //work on this
-        return location
+        const url = `${PokeAPI.BASE_URL}/location-area/${locationName}`;
+        
+        const response = await fetch(url);
+        const data = await response.json();
+
+        return data as Location;
     }
 }
 
