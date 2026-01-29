@@ -1,6 +1,7 @@
 import { createInterface } from "readline";
 import { commandHelp } from "./command_help.js";
 import { commandExit } from "./command_exit.js";
+import { PokeAPI } from "./pokeapi.js";
 export function getCommands() {
     return {
         exit: {
@@ -24,5 +25,8 @@ export function initState() {
     return {
         readline: REPL,
         commands: getCommands(),
+        pokeapi: new PokeAPI(),
+        nextLocationsURL: "",
+        prevLocationsURL: "",
     };
 }

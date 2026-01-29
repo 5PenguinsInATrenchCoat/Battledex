@@ -1,4 +1,4 @@
-export function commandHelp(state) {
+export async function commandHelp(state) {
     console.log("Welcome to the Pokedex!\nUsage:\n\n");
     for (let command of Object.values(state.commands)) {
         // Goes through each command and prints each name and description

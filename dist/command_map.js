@@ -1,0 +1,20 @@
+export async function commandMapForward(state) {
+    // If the next URL doens't exist, URL is undefined  
+    let URL = state.nextLocationsURL ?? undefined;
+    const locations = await state.pokeapi.fetchLocations(URL);
+    for (const loc of locations.results) {
+        console.log(loc.name);
+    }
+    state.nextLocationsURL = locations.next;
+    state.prevLocationsURL = locations.previous;
+}
+export async function commandMapBack(state) {
+    let URL = state.prevLocationsURL ?? undefined;
+    const locations = await state.pokeapi.fetchLocations(URL);
+    for (const loc of locations.results) {
+        console.log(loc.name);
+    }
+    ;
+    state.nextLocationsURL = locations.next;
+    state.prevLocationsURL = locations.previous;
+}
