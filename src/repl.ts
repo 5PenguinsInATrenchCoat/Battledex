@@ -1,5 +1,3 @@
-import { commandExit } from "./command_exit.js";
-import { commandHelp } from "./command_help.js";
 import type { CLICommand, State } from "./state.js"
 
 
