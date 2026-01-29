@@ -4,9 +4,11 @@ export async function commandMapForward(state: State): Promise<void>{
 // If the next URL doens't exist, URL is undefined  
 const URL = state.nextLocationsUrl ?? undefined;
 
-
 }
 
 export async function commandMapBack(state: State): Promise<void>{
-  const URL = state.nextLocationsUrl ?? undefined;
+const URL = state.prevLocationsUrl ?? undefined;
+if (!URL) {
+  URL = 
+
 }
