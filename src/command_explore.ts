@@ -1,9 +1,6 @@
 import { State } from "./state.js";
 
-export async function commandExplore(state: State, ...args: string[]) {
-    console.log(args);
-    console.log("---------------------------------")
-    
+export async function commandExplore(state: State, ...args: string[]) {    
     const encounter_list = await state.pokeAPI.fetchLocation(args[0]);
 
     console.log(`Exploring ${args[0]}...`)
