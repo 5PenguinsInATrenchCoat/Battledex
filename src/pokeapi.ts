@@ -1,4 +1,4 @@
-import { Cache } from "./pokecache";
+import { Cache } from "./pokecache.js";
 
 
 export class PokeAPI {
@@ -30,16 +30,23 @@ export class PokeAPI {
         const url = `${PokeAPI.BASE_URL}/location-area/${locationName}`;
         
         const response = await fetch(url);
+        
+        if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+        }
+
         const data = await response.json();
 
         return data as Location;
     }
-
+    /*
     async fetchLocationDetails(locationName: string): Promise<string[]> {
         let areaURL = `${PokeAPI.BASE_URL}/location-area/${locationName}`;
 
         const response = await fetch(areaURL);
         const data = await response.json();
+
+        this.#cache.add(areaURL, data);
 
         let pokemonList: string[] = [];
         for (let entry of data.pokemon_encounters) {
@@ -48,6 +55,7 @@ export class PokeAPI {
 
         return pokemonList;
     }
+    */
 }
 
 

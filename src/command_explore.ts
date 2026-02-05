@@ -1,14 +1,15 @@
 import { State } from "./state.js";
 
-const BASE_URL = `https://pokeapi.co/api/v2/location-area`;
+export async function commandExplore(state: State, ...args: string[]) {
+    console.log(args);
+    console.log("---------------------------------")
+    
+    const encounter_list = await state.pokeAPI.fetchLocation(args[0]);
 
-export async function commandExplore(state: State, location: string) {
-    const encounter_list = await state.pokeAPI.fetchLocationDetails(location);
-
-    console.log("Exploring pastoria-city-area...")
+    console.log(`Exploring ${args[0]}...`)
     console.log("Found Pokemon:");
 
-    for (const pokemon of encounter_list) {
-        console.log(`- ${pokemon}`);
+    for (const encounter of encounter_list.pokemon_encounters) {
+        console.log(` - ${encounter.pokemon.name}`);
     }
 }

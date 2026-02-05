@@ -11,7 +11,7 @@ import { commandExplore } from "./command_explore.js";
 export type CLICommand = {
     name: string;
     description: string;
-    callback: (state: State) => Promise<void>;
+    callback: (state: State, ...args: string[]) => Promise<void>;
     };
 
 export type State = {
@@ -43,6 +43,11 @@ export function getCommands(): Record<string, CLICommand> {
             name: "mapb",
             description: "Show the previous 20 locations",
             callback: commandMapBack,
+        },
+        explore: {
+            name: "explore",
+            description: "Explore a location area to find Pokemon",
+            callback: commandExplore,
         },
     };
 }

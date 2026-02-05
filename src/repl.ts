@@ -17,15 +17,17 @@ export async function startREPL(userState: State) {
 
     userState.readline.on('line', async (input: string) => {
         const cleanedInput = cleanInput(input);
+
+        const [commandName, ...args] = cleanedInput;
         
         if (cleanedInput.length === 0) {
             userState.readline.prompt();
             return;
         } else {
-            if (cleanedInput[0] in userState.commands) {
-                const command = userState.commands[cleanedInput[0]];
+            if (commandName in userState.commands) {
+                const command = userState.commands[commandName];
                 try {
-                    await command.callback(userState);
+                    await command.callback(userState, ...args);
                 } catch (err) {
                     console.log(`error:`, (err as Error).message);
                 }
@@ -36,5 +38,7 @@ export async function startREPL(userState: State) {
         }
     }
 );};
+
+
 
 

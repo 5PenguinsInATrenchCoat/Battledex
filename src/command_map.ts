@@ -1,6 +1,6 @@
 import type { State } from './state.js';
 
-export async function commandMapForward(state: State): Promise<void>{
+export async function commandMapForward(state: State, ...args: string[]): Promise<void>{
 // If the next URL doens't exist, URL is undefined  
 let URL = state.nextLocationsURL ?? undefined;
 const locations = await state.pokeAPI.fetchLocations(URL);
