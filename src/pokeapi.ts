@@ -60,7 +60,7 @@ export class PokeAPI {
 
 export type ShallowLocations = {
     /* Shallow list is the full, unedit list of locations from PokeAPI
-    each entry in this list would be equivalent to a single location (?) */
+    each entry in this list would be equivalent to a single location */
     count: number;
     next: string | null;
     previous: string | null;
@@ -111,7 +111,7 @@ export type Pokemon = {
     base_experience: number;
     height: number;
     weight: number;
-    stats: Array<{
+    stats: Array<{  // Array of stats, effort is EV value upon defeat, stat name is nested with a link to pokeAPI page for its own stat
         base_stat: number;
         effort: number;
         stat: {
