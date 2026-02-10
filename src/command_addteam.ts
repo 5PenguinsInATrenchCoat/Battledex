@@ -1,7 +1,7 @@
 import { State } from "./state.js";
 import type { Pokemon } from "./pokeapi.js";
 
-export async function commandBuildTeam(state: State, ...args: string[]) {
+export async function commandAdd(state: State, ...args: string[]) {
     if (state.poketeam.length >= 6) { // Checked before anything is processed
         console.log("Your party is full, please remove a member before adding a new one");
         return // Exits early if party is already full
