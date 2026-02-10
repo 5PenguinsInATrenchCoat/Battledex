@@ -25,6 +25,7 @@ export type State = {
     nextLocationsURL: string | null;
     prevLocationsURL: string | null;
     pokedex: Record<string, Pokemon>;
+    poketeam: Pokemon[]
 };
 
 export function getCommands(): Record<string, CLICommand> {
@@ -86,5 +87,6 @@ export function initState(): State {
         nextLocationsURL: null,
         prevLocationsURL: null,
         pokedex: {},
+        poketeam: [],
     };
 }
