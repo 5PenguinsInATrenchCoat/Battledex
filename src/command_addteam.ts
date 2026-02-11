@@ -21,9 +21,9 @@ export async function commandAdd(state: State, ...args: string[]) {
         return
     }
 
-    if (newMember in state.poketeam) { // No commonly used format allows for multiple of the same pokemon, so multiples will never be allowed
-        console.log(`${newMember.name} is already in your team!`)
+    if (state.poketeam.some(p => p.name === newMember!.name)) { // No commonly used format allows for multiple of the same pokemon, so multiples will never be allowed
+        console.log(`${newMember!.name} is already in your team!`)
     } else {
-        state.poketeam.push(newMember);
+        state.poketeam.push(newMember!);
     }
 }
