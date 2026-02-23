@@ -22,7 +22,8 @@ export async function commandRemove(state: State, ...args: string[]) {
     }
     // TODO: LOGIC IS BACKWARDS, IF THE NAME ISN'T FOUND IN THE TEAM IT SAYS IT'S NOT IN THE TEAM, IF IT IS FOUND IN THE TEAM IT SAYS IT'S NOT IN THE TEAM, THEN REMOVES IT ANYWAYS
     // CHECK: SEE IF 4X WEAKNESS IS COUNTED PROPERLY, CHECK IF WEAKNESS CHART UPDATES PROPERLY AFTER REMOVAL
-    if (state.poketeam.some(p => p.name === delMember!.name)) { // No commonly used format allows for multiple of the same pokemon, so multiples will never be allowed
+    // CHECK: SEE IF LOGIC CHANGE WORKED
+    if (state.poketeam.some(p => p.name !== delMember!.name)) { // No commonly used format allows for multiple of the same pokemon, so multiples will never be allowed
         console.log(`${delMember!.name} is not in your team!`)
     } else {
         state.poketeam = state.poketeam.filter(p => p.name != delMember!.name)
