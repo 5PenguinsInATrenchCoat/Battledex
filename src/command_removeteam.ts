@@ -10,7 +10,7 @@ export async function commandRemove(state: State, ...args: string[]) {
     let delMember: Pokemon | null = null; // delMember can be a Pokemon object or null, initially sets it to null
 
     if (!pokename) { // Only runs when addteam is called with no other input
-        console.log("Usage: delteam <pokemon name>")
+        console.log("Usage: remove <pokemon name>")
         return
     }
     
