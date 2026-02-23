@@ -8,9 +8,10 @@ import { commandExplore } from "./command_explore.js";
 import { Pokemon } from "./pokeapi.js";
 import { commandCatch } from "./command_catch.js";
 import { commandInspect } from "./command_inspect.js";
-import { cp } from "fs";
 import { commandPokedex } from "./command_pokedex.js";
 import { commandAdd } from "./command_addteam.js";
+import { commandRemove } from "./command_removeteam.js";
+import { commandViewTeam } from "./command_viewteam.js";
 
 
 export type CLICommand = {
@@ -70,9 +71,22 @@ export function getCommands(): Record<string, CLICommand> {
             name: "pokedex",
             description: "List caught Pokemon",
             callback: commandPokedex
-        }
+        },
         addteam: {
-            //continue here
+            name: "addteam",
+            description: "Add a Pokemon to your team",
+            callback: commandAdd
+        },
+        removeteam: {
+            name: "removeteam",
+            description: "Remove a Pokemon from your team",
+            callback: commandRemove
+        },
+        viewteam: {
+            name: "viewteam",
+            description: "View your current team and their weaknesses",
+            callback: commandViewTeam
+        }
     };
 }
 

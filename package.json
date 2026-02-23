@@ -9,19 +9,15 @@
   "dependencies": {
     "undici-types": "^7.16.0"
   },
-  "type":"module",
-
-    
+  "type": "module",
   "scripts": {
     "test": "vitest --run",
     "build": "npxtsc",
     "start": "node dist/main.js",
     "dev": "npx tsc && node dist/main.js"
-    
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": ""
 }
-  
