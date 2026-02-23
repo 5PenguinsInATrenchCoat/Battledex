@@ -9,8 +9,6 @@ export async function commandInspect(state: State, ...args: string[]) {
         console.log("you have not caught that pokemon")
     } else {
         console.log(`Name: ${pokemon.name}`);
-        console.log(`Height: ${pokemon.height}`);
-        console.log(`Weight: ${pokemon.weight}`);
         console.log(`Stats:`);
         
         // Stat block
@@ -22,6 +20,11 @@ export async function commandInspect(state: State, ...args: string[]) {
             } else {
                 break; // Exit the loop after processing 6 stats
             }
+
+            console.log("")
+            console.log("Learnset:")
+
+            for (const move of // TODO: CONTINUE HERE, PRINT EACH MOVE AND LEVEL FOR CURRENT SET GAME
         }
 
 
