@@ -24,7 +24,7 @@ export async function commandInspect(state: State, ...args: string[]) {
             console.log("")
             console.log("Learnset:")
 
-            for (const move of // TODO: CONTINUE HERE, PRINT EACH MOVE AND LEVEL FOR CURRENT SET GAME
+            //for (const move of // TODO: CONTINUE HERE, PRINT EACH MOVE AND LEVEL FOR CURRENT SET GAME
         }
 
 

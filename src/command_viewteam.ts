@@ -10,9 +10,12 @@ export async function commandViewTeam(state: State, ...args: string[]) {
   
   console.log("Your current team:")
   for (const pokemon of state.poketeam) {
-    console.log(` - ${pokemon.name}`)
+    console.log(` - ${pokemon.name}`) // What we actually want to print at this time
+    
+    // Everything below is here so we only need to loop once
+    
     for (const poketype of pokemon.types) {
-      weaknessChart[poketype.type.name] = (weaknessChart[poketype.type.name] + 1) || 1
+      const typeData = await state.pokeAPI.fetchType(poketype.type.name)
     }
   }
   console.log("")
@@ -21,6 +24,14 @@ export async function commandViewTeam(state: State, ...args: string[]) {
   for (const weakness of Object.keys(weaknessChart)) {
     console.log(` - ${weakness}: ${weaknessChart[weakness]}x`)
   }
+
+  console.log("")
+  console.log("Resistances:")
+
+
+
+  console.log("")
+  console.log("Immunities:")
 
   
 }

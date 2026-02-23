@@ -55,6 +55,20 @@ export class PokeAPI {
         return data as Pokemon;
     }
 
+    async fetchType(typeName: string): Promise<MoveType> {
+        const typeurl = `${PokeAPI.BASE_URL}/type/${typeName}`;
+        
+        const response = await fetch(typeurl);
+        
+        if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        return data as MoveType;
+    }
+
 
 }
 
@@ -125,6 +139,7 @@ export type Pokemon = {
             name: string;
             url: string;
         };
+    }>;
     moves: Array<{
         move: {
             name: string;
@@ -132,5 +147,20 @@ export type Pokemon = {
             version_group_details: Array<{ // TODO: CONTINUE HERE, FINISH TYPE STRUCTURE
                 level_learned_at: number;
                 move_learn_method: {name: string; url: string};
+            }>;
+        };
     }>;
 };
+
+export type MoveType = {
+    id: number;
+    name: string;
+    damage_relations: Array<{
+        no_damage_to: Array<{name: string; url: string}>;
+        half_damage_to: Array<{name: string; url: string}>;
+        double_damage_to: Array<{name: string; url: string}>;
+        no_damage_from: Array<{name: string; url: string}>;
+        half_damage_from: Array<{name: string; url: string}>;
+        double_damage_from: Array<{name: string; url: string}>;
+    }>;
+}
